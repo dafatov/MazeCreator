@@ -40,8 +40,7 @@ public class Main {
 
         for (int i : candidates) {
             for (int j : candidates) {
-                System.out.println(i+"|"+j);
-                if (i != j) {
+                if (i < j) {
                     int tmp = getDistance(indexToCoord(i)[0], indexToCoord(i)[1], indexToCoord(j)[0], indexToCoord(j)[1]);
 
                     if (tmp > maxDistance) {
@@ -58,7 +57,7 @@ public class Main {
     }
 
     private static int getDistance(int x1, int y1, int x2, int y2) {
-        int [] currentCoordinates = {x1, y1};
+        int currentCoordinates[] = {x1, y1};
         int counter = 0;
 
         while (currentCoordinates[0] != x2 | currentCoordinates[1] != y2) {
@@ -67,7 +66,7 @@ public class Main {
             HashSet<Direction> directions = validateDirection(coordToIndex(currentCoordinates));
 
             for (Direction d : directions) {
-                int [] checkCoordinate = useDirection(indexToCoord(coordToIndex(currentCoordinates)), d);
+                int checkCoordinate[] = useDirection(indexToCoord(coordToIndex(currentCoordinates)), d);
                 double distance = getDistanceDouble(checkCoordinate[0], checkCoordinate[1], x2, y2);
 
                 if (distance < min) {
@@ -143,7 +142,6 @@ public class Main {
                 list.add(i);
             }
         }
-        System.out.println(CountOfCells - list.size());
         return list;
     }
 
@@ -236,7 +234,6 @@ public class Main {
                 System.exit(4);
             }
         }
-        //System.out.println(way);
         return way;
     }
 
